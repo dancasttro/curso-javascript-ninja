@@ -58,7 +58,9 @@
   o método `toUpperCase()`. Mostre o resultado no console:
   */
   console.log( '\n"O Centauro de Luvas" em caixa alta:' );
-  // ?
+  console.log( text.replace( /O Centauro de Luvas/g, function(phrase){
+    return phrase.toUpperCase();
+  }) );
 
   /*
   Agora iremos substituir as datas no formato "13 de junho de 1804" para
@@ -73,7 +75,28 @@
   "O mês de [NOME DO MÊS] é representado pelo número [NÚMERO DO MÊS]."
   */
   console.log( '\nMeses representados por números:' );
-  // ?
+  function getMonthNumber(monthName) {
+    var months = {
+      janeiro: '01',
+      fevereiro: '02',
+      'março': '03',
+      abril: '04',
+      maio: '05',
+      junho: '06',
+      julho: '07',
+      agosto: '08',
+      setembro: '09',
+      outubro: '10',
+      novembro: '11',
+      dezembro: '12'
+
+    };
+    return months[ monthName ];
+
+  }
+  console.log( 'O mês de março é representado pelo número '+ getMonthNumber( 'março' ) + '.' );
+  console.log( 'O mês de setembro é representado pelo número '+ getMonthNumber( 'setembro' ) + '.' );
+  console.log( 'O mês de dezembro é representado pelo número '+ getMonthNumber( 'dezembro' ) + '.' );
 
   /*
   Agora, declare uma variável chamada `regexDate` que irá receber a expressão
@@ -84,7 +107,8 @@
   Mostre a regex no console.
   */
   console.log( '\nRegex que vai fazer o match com as datas do texto:' );
-  // ?
+  var regexDate = /(\d\d) de (junho|julho) de (\d\d\d\d)/g;
+  console.log( regexDate );
 
   /*
   Agora crie a função que irá fazer o replace dos dados. A função será chamada
@@ -94,5 +118,9 @@
   console o resultado.
   */
   console.log( '\nReplace de datas:' );
-  // ?
+  function replaceDate(regex, day, month, year) {
+    return day + '/' + getMonthNumber(month) + '/' + year;
+  }
+  console.log( text.replace(regexDate, replaceDate) );
+
 })();
